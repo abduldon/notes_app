@@ -1,4 +1,4 @@
-from extensions import db
+﻿from extensions import db
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -8,7 +8,6 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
-    # Relationship to the Note model
     notes = db.relationship(
         'Note',
         backref='user',
@@ -18,22 +17,20 @@ class User(db.Model):
 
 class Note(db.Model):
     __tablename__ = 'notes'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
-    discription = db.Column(db.Text, nullable=False)  # Note: Spelled 'discription' on the slide
-    
-    # Foreign key linking to the User model
+    description = db.Column('discription', db.Text, nullable=False)
     user_id = db.Column(
         db.Integer,
         db.ForeignKey('users.id'),
         nullable=False
     )
-    
+
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
-            'discription': self.discription,
+            'description': self.description,
             'user_id': self.user_id
         }

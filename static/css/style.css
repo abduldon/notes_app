@@ -1,0 +1,66 @@
+body {
+    background: #f4f7fb;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.page-header h2 {
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.note-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 18px;
+}
+
+.note-card .card-body {
+    background: #ffffff;
+}
+
+.note-text {
+    color: #4d5873;
+    line-height: 1.75;
+}
+
+.empty-state {
+    background: #ffffff;
+    border: 1px dashed rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+}
+
+.custom-alert {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.alert-success {
+    background-color: #e6f4ea;
+    color: #1d643b;
+    border-color: #c4e3cf;
+}
+
+.alert-danger {
+    background-color: #fbe6e6;
+    color: #7a1717;
+    border-color: #f2c2c2;
+}
+
+.alert-warning {
+    background-color: #fff4dd;
+    color: #7a5c00;
+    border-color: #f3ddb5;
+}
+
+.form-control:focus {
+    border-color: #4f7dff;
+    box-shadow: 0 0 0 0.15rem rgba(79, 125, 255, 0.2);
+}

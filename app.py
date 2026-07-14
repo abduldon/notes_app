@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request
+from flask import Flask, render_template, redirect, url_for, session, flash
 from models import User, Note
 from config import config
 from extensions import db
@@ -26,49 +26,15 @@ def create_app():
         pass
 
     @app.route("/")
-    def hello_world():
-        return """
-        <h1>Hello, World!</h1>
-        <p>My Notes App</p>
-        <p>Project setup done and database connected.</p>
-        """
+    def home():
+        return render_template('index.html')
 
-    @app.route("/register", methods=["GET", "POST"])
-    def register():
-
-        if request.method == "POST":
-
-            username = request.form["username"]
-            email = request.form["email"]
-            password = request.form["password"]
-
-            user = User(
-                username=username,
-                email=email,
-                password=password
-            )
-
-            db.session.add(user)
-            db.session.commit()
-
-            return "User Registered Successfully!"
-
-        return """
-        <form method="POST">
-            Username:
-            <input name="username"><br><br>
-
-            Email:
-            <input name="email"><br><br>
-
-            Password:
-            <input type="password" name="password"><br><br>
-
-            <button type="submit">
-                Register
-            </button>
-        </form>
-        """
+    @app.route('/dashboard')
+    def dashboard():
+        if 'user_id' not in session:
+            flash('Please log in to view your notes.', 'warning')
+            return redirect(url_for('auth.login'))
+        return redirect(url_for('notes.notes_index'))
 
     with app.app_context():
         db.create_all()
