@@ -1,12 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
+from extensions import db
 
-db = SQLAlchemy()
+class User(db.Model):
+    __tablename__ = 'users'
 
-class User(db.model):
-    id = db.column(db.Integer, primary_key=true)
-    username = db.column(db.string(80), unique=True, nullable = False)
-    email = db.column(db.String(120), unique = True, nullable = False)
-    password = db.column(db.string(120, unique = True, nullable = False))
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
 
     # Relationship to the Note model
     notes = db.relationship(
